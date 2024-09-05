@@ -19,7 +19,7 @@ public class Chasingenemy : Enemy
         currentState = EnemyState.idle;
         myRigidbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        target = gameObject.FindWithTag("Player").transform;
+        target = GameObject.FindWithTag("Player").transform;
         anim.SetBool("wakeup", true); 
     }
 

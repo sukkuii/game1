@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class CharacterControll : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     public PlayerState currentState;
     private float _moveDir;
-    private float _jumpPressed;
+    private bool _jumpPressed;
     private float _jumpYVel;
     private Rigidbody2D _rigidbody2D;
     private Animator anim;
@@ -63,9 +64,11 @@ public class CharacterControll : MonoBehaviour
         {
             anim.SetBool("isWalking", true);
         }
-        if (GetInput.GetButtonDown("attack") && currentState != PlayerState.attack)
+        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack)
         {
+            Debug.Log(currentState);
             StartCoroutine(AttackCo());
+            Debug.Log(currentState);
         }
     }
 
@@ -116,8 +119,8 @@ public class CharacterControll : MonoBehaviour
 
     void GetInput()
     {
-        _moveDir = GetInput.GetAxisRaw("Horizontal");// takes move input
-        _jumpPressed = GetInput.GetKeyDown(KeyCode.Space);// takes input for jumping using space
+        _moveDir = Input.GetAxisRaw("Horizontal");// takes move input
+        _jumpPressed = Input.GetKeyDown(KeyCode.Space);// takes input for jumping using space
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -127,7 +130,7 @@ public class CharacterControll : MonoBehaviour
         anim.SetBool("isJumping", false);
     }
 
-    private void OnCollisionExit2D(Collision other)
+    private void OnCollisionExit2D(Collision2D other)
     {
         isGrounded = false;
         anim.SetBool("isGrouned", false);
