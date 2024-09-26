@@ -9,7 +9,8 @@ public enum PlayerState
     walk,
     attack,
     interact,
-    stagger
+    stagger,
+    block
 }
 
 public class CharacterControll : MonoBehaviour
@@ -51,7 +52,7 @@ public class CharacterControll : MonoBehaviour
             this.GetComponent<SpriteRenderer>().flipX = true;
             anim.SetFloat("Move", -1);
         }
-        else
+        else if(_moveDir > 0)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
             anim.SetFloat("Move", 1);
@@ -65,10 +66,8 @@ public class CharacterControll : MonoBehaviour
             anim.SetBool("isWalking", true);
         }
         if (Input.GetButtonDown("attack") && currentState != PlayerState.attack)
-        {
-            Debug.Log(currentState);
-            StartCoroutine(AttackCo());
-            Debug.Log(currentState);
+        {            
+            StartCoroutine(AttackCo());           
         }
     }
 
@@ -76,9 +75,9 @@ public class CharacterControll : MonoBehaviour
     {
         currentState = PlayerState.attack;
         anim.SetBool("isAttacking", true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         anim.SetBool("isAttacking", false);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1);
         currentState = PlayerState.walk;
     }
     
@@ -108,7 +107,7 @@ public class CharacterControll : MonoBehaviour
     private void Move()
     {
         _moveVel = _rigidbody2D.velocity;
-        _moveVel.x = _moveDir * moveSpeed *Time.fixedDeltaTime;
+        _moveVel.x = _moveDir * moveSpeed * Time.fixedDeltaTime;
         _rigidbody2D.velocity = _moveVel;
     }
 

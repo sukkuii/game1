@@ -78,4 +78,12 @@ public class Enemy : MonoBehaviour
 
         }
     }
+
+    public void ChangeState(EnemyState newState)
+    {
+        if(currentState != newState)
+        {
+            currentState = newState;
+        }
+    }
 }
