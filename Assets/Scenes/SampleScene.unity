@@ -7339,7 +7339,7 @@ GameObject:
   - component: {fileID: 230523988}
   m_Layer: 0
   m_Name: MantisMove_8
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7517,7 +7517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  maxHealth: 20
+  maxHealth: 2
   health: 0
   enemyName: Mantis
   baseAttack: 1
@@ -7673,7 +7673,7 @@ Transform:
   m_GameObject: {fileID: 331795606}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.77, y: -2.74, z: 0}
+  m_LocalPosition: {x: -9.23, y: -2.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7717,8 +7717,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 861744031}
-  jumpHeight: 1
-  moveSpeed: 50
+  jumpHeight: 0.15
+  moveSpeed: 100
   currentState: 0
 --- !u!1 &571409912
 GameObject:
@@ -7730,9 +7730,10 @@ GameObject:
   m_Component:
   - component: {fileID: 571409913}
   - component: {fileID: 571409914}
+  - component: {fileID: 571409915}
   m_Layer: 0
   m_Name: right attack hitbox
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7781,7 +7782,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.9399936, y: -0.20619226}
@@ -7797,6 +7798,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9393554, y: 1.0970321}
   m_EdgeRadius: 0
+--- !u!114 &571409915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571409912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e411e83944d1d44bd5dbbb17b846b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 0
+  knockTime: 0
+  damage: 0
 --- !u!1 &750184384
 GameObject:
   m_ObjectHideFlags: 0
@@ -7985,7 +8001,7 @@ GameObject:
   - component: {fileID: 1122657353}
   m_Layer: 0
   m_Name: right block
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8062,7 +8078,7 @@ GameObject:
   - component: {fileID: 1363733485}
   m_Layer: 0
   m_Name: left block
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9727,9 +9743,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1683779905}
   - component: {fileID: 1683779906}
+  - component: {fileID: 1683779907}
   m_Layer: 0
   m_Name: left attack hitbox
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9778,7 +9795,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.92264795, y: -0.29876232}
@@ -9794,6 +9811,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7012377, y: 1.0527229}
   m_EdgeRadius: 0
+--- !u!114 &1683779907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683779904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e411e83944d1d44bd5dbbb17b846b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 1
+  knockTime: 1
+  damage: 1
 --- !u!1 &2065653009
 GameObject:
   m_ObjectHideFlags: 0
@@ -9809,7 +9841,7 @@ GameObject:
   - component: {fileID: 2065653010}
   m_Layer: 0
   m_Name: BeetleMove_4
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9986,7 +10018,7 @@ Transform:
   m_GameObject: {fileID: 2065653009}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.68, y: -1.82, z: 0}
+  m_LocalPosition: {x: -5.01, y: -0.23, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -32,6 +32,22 @@ public class Enemy : MonoBehaviour
         health = maxHealth;
     }
 
+    public void Knock(Rigidbody2D myRb, float knockTime, float damage)
+    {
+        StartCoroutine(KnockCo(myRb, knockTime));
+        TakeDamage(damage);
+    }
+
+    private IEnumerator KnockCo(Rigidbody2D myRb, float knockTime)
+    {
+        if(myRb != null)
+        {
+            yield return new WaitForSeconds(knockTime);
+            myRb.velocity = Vector2.zero;
+            currentState = EnemyState.idle;
+        }
+    }
+
     private void Start()
     {
         health = maxHealth;
@@ -58,24 +74,6 @@ public class Enemy : MonoBehaviour
         {
             GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(effect, deathEffectDelay);
-        }
-    }
-
-    public void Knock(Rigidbody2D myRigidbody, float knockTime, float damage)
-    {
-        StartCoroutine(KnockCo(myRigidbody, knockTime));
-        TakeDamage(damage);
-    }
-
-    private IEnumerator KnockCo(Rigidbody2D myRigidbody, float knockTime)
-    {
-        if (myRigidbody != null) 
-        {
-            yield return new WaitForSeconds(knockTime);
-            myRigidbody.velocity = Vector2.zero;
-            currentState = EnemyState.idle;
-
-
         }
     }
 

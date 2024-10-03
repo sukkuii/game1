@@ -31,6 +31,9 @@ public class CharacterControll : MonoBehaviour
     private Animator anim;
     private Vector3 _moveVel;
     private bool isGrounded;
+    private bool isBlocking;
+    bool buttonBlockPressed;
+    bool buttonBlockUp;
 
     private void Awake()
     {
@@ -46,28 +49,45 @@ public class CharacterControll : MonoBehaviour
 
     private void Update()
     {
-        GetInput();
-        if (_moveDir < 0)
+        _moveDir = Input.GetAxisRaw("Horizontal");// takes move input
+        _jumpPressed = Input.GetKeyDown(KeyCode.Space);// takes input for jumping using space
+        buttonBlockPressed = Input.GetButtonDown("block");// Настройка
+        buttonBlockUp = Input.GetButtonUp("block");
+        if(currentState != PlayerState.block && currentState != PlayerState.stagger)
         {
-            this.GetComponent<SpriteRenderer>().flipX = true;
-            anim.SetFloat("Move", -1);
-        }
-        else if(_moveDir > 0)
-        {
-            this.GetComponent<SpriteRenderer>().flipX = false;
-            anim.SetFloat("Move", 1);
+            if (_moveDir < 0)
+            {
+                this.GetComponent<SpriteRenderer>().flipX = true;
+                anim.SetFloat("Move", -1);
+                anim.SetBool("isWalking", true);
+            }
+            else if(_moveDir > 0)
+            {
+                this.GetComponent<SpriteRenderer>().flipX = false;
+                anim.SetFloat("Move", 1);
+                anim.SetBool("isWalking", true);
+            }
         }
         if (_moveDir == 0)
         {
             anim.SetBool("isWalking", false);
         }
-        else
-        {
-            anim.SetBool("isWalking", true);
-        }
-        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack)
+        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack && currentState != PlayerState.block)// stagger
         {            
             StartCoroutine(AttackCo());           
+        }
+        if(buttonBlockPressed && (currentState == PlayerState.idle || currentState == PlayerState.walk))
+        {
+            currentState = PlayerState.block;
+            isBlocking = true;
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isBlocking", true);
+        }
+        if(buttonBlockUp && currentState == PlayerState.block)
+        {
+            anim.SetBool("isBlocking", false);
+            currentState = PlayerState.walk;
+            isBlocking = false;
         }
     }
 
@@ -75,7 +95,7 @@ public class CharacterControll : MonoBehaviour
     {
         currentState = PlayerState.attack;
         anim.SetBool("isAttacking", true);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0);
         anim.SetBool("isAttacking", false);
         yield return new WaitForSeconds(1);
         currentState = PlayerState.walk;
@@ -120,6 +140,8 @@ public class CharacterControll : MonoBehaviour
     {
         _moveDir = Input.GetAxisRaw("Horizontal");// takes move input
         _jumpPressed = Input.GetKeyDown(KeyCode.Space);// takes input for jumping using space
+        buttonBlockPressed = Input.GetButtonDown("block");// Настройка
+        buttonBlockUp = Input.GetButtonUp("block");
     }
 
     private void OnCollisionEnter2D(Collision2D col)
