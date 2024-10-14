@@ -16,14 +16,25 @@ public enum PlayerState
 public class CharacterControll : MonoBehaviour
 { 
     public Camera mainCamera;
-    bool facingRight = true;
-    float moveDirection = 0;
-    Vector3 CameraPos;
     CapsuleCollider2D mainCollider;
-    Transform t;
+
+    [Header("Movement")]
     [SerializeField] private float jumpHeight;
     [SerializeField] private float moveSpeed = 10f;
     public PlayerState currentState;
+    private bool facingRight;
+
+    [Header("Health")]
+    public float currentHealth;
+    [SerializeField] private float maxHealth;
+
+    [Header("Iframe Stuff")]
+    public Color flashColor;
+    public Color regularColor;
+    public float flashDuration;
+    public int numberOfFlashes;
+    public Collider2D triggerCollider;
+    public SpriteRenderer mySprite;
     private float _moveDir;
     private bool _jumpPressed;
     private float _jumpYVel;
@@ -41,10 +52,37 @@ public class CharacterControll : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    public void Knock(float knockTime, float damage, Vector3 positionOfEnemy)
+    {
+        if(!(isBlocking && (facingRight && positionOfEnemy.x > this.gameObject.transform.position.x || !facingRight && positionOfEnemy.x < this.gameObject.transform.position.x)))
+        {
+            currentHealth -= damage;
+            if(currentHealth > 0)
+            {
+                StartCoroutine(KnockCo(knockTime));
+            }
+            else
+            {
+                this.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private IEnumerator KnockCo(float knockTime)
+    {
+        if(_rigidbody2D != null)
+        {
+            StartCoroutine(FlashCo());
+            yield return new WaitForSeconds(knockTime);
+            _rigidbody2D.velocity = Vector2.zero;
+            currentState = PlayerState.idle;
+        }
+    }
     void Start()
     {
         anim.SetFloat("Move", 1);
         currentState = PlayerState.walk;
+        currentHealth = maxHealth;
     }
 
     private void Update()
@@ -60,12 +98,14 @@ public class CharacterControll : MonoBehaviour
                 this.GetComponent<SpriteRenderer>().flipX = true;
                 anim.SetFloat("Move", -1);
                 anim.SetBool("isWalking", true);
+                facingRight = false;
             }
             else if(_moveDir > 0)
             {
                 this.GetComponent<SpriteRenderer>().flipX = false;
                 anim.SetFloat("Move", 1);
                 anim.SetBool("isWalking", true);
+                facingRight = true;
             }
         }
         if (_moveDir == 0)
@@ -155,6 +195,21 @@ public class CharacterControll : MonoBehaviour
     {
         isGrounded = false;
         anim.SetBool("isGrouned", false);
+    }
+
+    private IEnumerator FlashCo()
+    {
+        int temp = 0;
+        triggerCollider.enabled = false;
+        while(temp < numberOfFlashes)
+        {
+            mySprite.color = flashColor;
+            yield return new WaitForSeconds(flashDuration);
+            mySprite.color = regularColor;
+            yield return new WaitForSeconds(flashDuration);
+            temp++;
+        }
+        triggerCollider.enabled = true;
     }
 }
 
