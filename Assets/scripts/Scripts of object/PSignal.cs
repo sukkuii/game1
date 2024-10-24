@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu]
 
-public class PSignal : ScriptableObject
+public class Signal : ScriptableObject
 {
     public List<SignalListiner> listeners = new List<SignalListiner>();
     public void Raise()

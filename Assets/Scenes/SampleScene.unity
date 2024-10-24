@@ -7783,8 +7783,8 @@ MonoBehaviour:
   jumpHeight: 0.15
   moveSpeed: 100
   currentState: 0
-  currentHealth: 0
-  maxHealth: 4
+  currentHealth: {fileID: 11400000, guid: a20cc620092fd1148ade3cf66037d11a, type: 2}
+  playerHealthSignal: {fileID: 11400000, guid: e988794913b6a2e4b861ac99cf7cf15f, type: 2}
   flashColor: {r: 0.9811321, g: 0, b: 0, a: 1}
   regularColor: {r: 1, g: 1, b: 1, a: 1}
   flashDuration: 0.07
@@ -7928,6 +7928,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 581178920}
+  - component: {fileID: 581178922}
+  - component: {fileID: 581178921}
   m_Layer: 5
   m_Name: HardContenier
   m_TagString: Untagged
@@ -7958,6 +7960,56 @@ RectTransform:
   m_AnchoredPosition: {x: -519, y: 216}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &581178921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581178919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2621d423897ffc48b81ecf89fb0d31f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: e988794913b6a2e4b861ac99cf7cf15f, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 581178922}
+        m_TargetAssemblyTypeName: HeartMeneger, Assembly-CSharp
+        m_MethodName: UpdateHearts
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &581178922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581178919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bdf9d45ed968bb4fad864ef76c660de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hearts:
+  - {fileID: 968557145}
+  - {fileID: 1031134083}
+  - {fileID: 954983717}
+  - {fileID: 1262098386}
+  fullHeart: {fileID: 1503020388, guid: af0fb991641be3045aeb6000adcbb0a3, type: 3}
+  halfHeart: {fileID: -45890371, guid: af0fb991641be3045aeb6000adcbb0a3, type: 3}
+  emptyHeart: {fileID: 592120358, guid: af0fb991641be3045aeb6000adcbb0a3, type: 3}
+  heartConteniers: {fileID: 11400000, guid: 05898ddbc38474c4487bf12837dd72b6, type: 2}
+  playerCurrentStateHealth: {fileID: 11400000, guid: a20cc620092fd1148ade3cf66037d11a, type: 2}
 --- !u!1 &750184384
 GameObject:
   m_ObjectHideFlags: 0

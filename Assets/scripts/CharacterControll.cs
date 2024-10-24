@@ -25,8 +25,8 @@ public class CharacterControll : MonoBehaviour
     private bool facingRight;
 
     [Header("Health")]
-    public float currentHealth;
-    [SerializeField] private float maxHealth;
+    public FloatValue currentHealth;
+    public PSignal playerHealthSignal;
 
     [Header("Iframe Stuff")]
     public Color flashColor;
@@ -56,8 +56,9 @@ public class CharacterControll : MonoBehaviour
     {
         if(!(isBlocking && (facingRight && positionOfEnemy.x > this.gameObject.transform.position.x || !facingRight && positionOfEnemy.x < this.gameObject.transform.position.x)))
         {
-            currentHealth -= damage;
-            if(currentHealth > 0)
+            currentHealth.runtimeValue -= damage;
+            playerHealthSignal.Raise();
+            if(currentHealth.runtimeValue > 0)
             {
                 StartCoroutine(KnockCo(knockTime));
             }
@@ -82,7 +83,6 @@ public class CharacterControll : MonoBehaviour
     {
         anim.SetFloat("Move", 1);
         currentState = PlayerState.walk;
-        currentHealth = maxHealth;
     }
 
     private void Update()
