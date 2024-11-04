@@ -13,7 +13,7 @@ public class SignalListiner : MonoBehaviour
         signalEvent.Invoke();
    }
 
-   private void OnEnamble()
+   private void OnEnable()
    {
         signal.RegisterListiner(this);
    }
