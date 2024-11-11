@@ -38,6 +38,18 @@ public class Enemy : MonoBehaviour
         TakeDamage(damage);
     }
 
+    public void ChangeAnim(float moveX)
+    {
+        if(transform.position.x > moveX)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+        }
+    }
+
     private IEnumerator KnockCo(Rigidbody2D myRb, float knockTime)
     {
         if(myRb != null)
@@ -53,7 +65,7 @@ public class Enemy : MonoBehaviour
         health = maxHealth;
     }
 
-    void OnEnamble()
+    void OnEnable()
     {
         transform.position = homePosition;
     }

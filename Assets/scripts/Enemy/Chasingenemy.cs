@@ -35,14 +35,7 @@ public class Chasingenemy : Enemy
             if(currentState == EnemyState.idle || EnemyState.walk == currentState && currentState != EnemyState.stagger)
             {
                 Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed*Time.deltaTime);
-                if(transform.position.x > target.position.x)
-                {
-                    this.GetComponent<SpriteRenderer>().flipX = false;
-                }
-                else
-                {
-                    this.GetComponent<SpriteRenderer>().flipX = true;
-                }
+                ChangeAnim(target.position.x);
                 myRigidbody.MovePosition(temp);
                 ChangeState(EnemyState.walk);
                 anim.SetBool("Wakeup", true);
