@@ -88,7 +88,7 @@ public class CharacterControll : MonoBehaviour
     private void Update()
     {
         _moveDir = Input.GetAxisRaw("Horizontal");// takes move input
-        _jumpPressed = Input.GetKeyDown(KeyCode.Space);// takes input for jumping using space
+        _jumpPressed = Input.GetButton("Jump");// takes input for jumping using space
         buttonBlockPressed = Input.GetButtonDown("block");// Настройка
         buttonBlockUp = Input.GetButtonUp("block");
         if(currentState != PlayerState.block && currentState != PlayerState.stagger)
@@ -179,7 +179,7 @@ public class CharacterControll : MonoBehaviour
     void GetInput()
     {
         _moveDir = Input.GetAxisRaw("Horizontal");// takes move input
-        _jumpPressed = Input.GetKeyDown(KeyCode.Space);// takes input for jumping using space
+        _jumpPressed = Input.GetButtonDown("Jump");// takes input for jumping using space
         buttonBlockPressed = Input.GetButtonDown("block");// Настройка
         buttonBlockUp = Input.GetButtonUp("block");
     }
