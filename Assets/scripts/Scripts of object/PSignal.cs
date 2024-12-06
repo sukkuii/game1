@@ -25,3 +25,6 @@ public class PSignal : ScriptableObject
         listeners.Remove(listiner);
     }
 }
+
+так ребятки я всех приглашаю на свой день рождения
+Приходите в престо у жд где то в 19 00 
