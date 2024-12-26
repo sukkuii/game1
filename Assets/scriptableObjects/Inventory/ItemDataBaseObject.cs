@@ -4,18 +4,26 @@ using UnityEngine;
 
 [CreateAssetMenu (fileName = "New Item Database", menuName = "Inventory System/Items/Database")]
 
-public class ItemDataBaseObject : ScriptsableObject, ISerializationCallbackReceiver;
+public class ItemDataBaseObject : ScriptableObject, ISerializationCallbackReceiver
 {
     public ItemObject[] items;
     public Dictionary<ItemObject, int> GetId = new Dictionary<ItemObject, int>();
-    // Start is called before the first frame update
-    void Start()
+    public Dictionary<int, ItemObject> GetItem = new Dictionary<int, ItemObject>();
+    
+    public void OnAfterDeserialize()
     {
-        
+        GetId = new Dictionary<ItemObject, int>();
+        GetItem = new Dictionary<int, ItemObject>();
+
+        for(int i = 0; i < items.Length; i++)
+        {
+            GetId.Add(items[i], i);
+            GetItem.Add(i, items[i]);
+            
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnBeforeSerialize()
     {
         
     }
