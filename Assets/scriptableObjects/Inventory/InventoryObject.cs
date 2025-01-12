@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 [CreateAssetMenu (fileName = "New Inventory", menuName = "Inventory System/Inventory")]
 
 public class InventoryObject : ScriptableObject, ISerializationCallbackReceiver
 {
     public string savePath;
-    public ItemDataBaseObject database;
+    private ItemDataBaseObject database;
     public List<InventorySlot> Container = new List<InventorySlot>();
     
     public void AddItem(ItemObject item, int amount)
@@ -24,18 +25,31 @@ public class InventoryObject : ScriptableObject, ISerializationCallbackReceiver
         Container.Add(new InventorySlot(database.GetId[item], item, amount));
     }
 
+    private void OnEnable()
+    {
+        #if UNITY_EDITOR
+        database = (ItemDataBaseObject)AssetDatabase.LoadAssetAtPath("Asset/scriptableObjects/Inventory/ItemDataBase.asset", typeof(ItemDataBaseObject));
+        #endif
+    }
+
     public void Save()
     {
         string saveData = JsonUtility.ToJson(this, true);
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(string.Concat(Application.persistentDataPath,savePath));
+        FileStream file = File.Create(string.Concat(Application.persistentDataPath, savePath));
         bf.Serialize(file, saveData);
         file.Close();
     }
 
     public void Load()
     {
-
+        if(File.Exists(string.Concat(Application.persistentDataPath, savePath)))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(string.Concat(Application.persistentDataPath, savePath),FileMode.Open);
+            JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
+            file.Close();
+        }
     }
 
     public void OnAfterDeserialize()

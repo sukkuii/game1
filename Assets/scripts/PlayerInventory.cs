@@ -20,4 +20,16 @@ public class PlayerInventory : MonoBehaviour
     {
         inventory.Container.Clear();
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            inventory.Save();           
+        }
+        if(Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            inventory.Load();
+        }
+    }
 }
