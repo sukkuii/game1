@@ -9,10 +9,24 @@ public enum ItemType
     Default
 }
 
-public class ItemObject : ScriptableObject
+public abstract class ItemObject : ScriptableObject //Abstract что это
 {
-   public GameObject prefab;
+   public Sprite uiDisplay;
    public ItemType itemType;
    public string description;
+   public int ID;
    
+}
+
+[System.Serializable]
+public class Item
+{
+    public string Name;
+    public int ID;
+
+    public Item(ItemObject item)
+    {
+        Name = item.name;
+        ID = item.ID;
+    }
 }
