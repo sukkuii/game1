@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a028e65bb7f7ca4cbb7a896d22a8724, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8025309284091977669, guid: 22357a9df8b01f2448716c1a15dc4db6, type: 3}
+  uiDisplay: {fileID: 21300000, guid: e5c2a4a41d5d902478d2e77477a163f3, type: 3}
   itemType: 0
   description: "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u0430\u0432\u043B\u0438\u0432\u0430\u0435\u0442
     1\u0445\u043F"
+  ID: 0
   regenHealthValue: 1

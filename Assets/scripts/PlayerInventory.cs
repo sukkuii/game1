@@ -16,10 +16,11 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    /*private void OnApplicationQuit()
+    private void OnApplicationQuit()
     {
-        inventory.Container.Clear();
-    }*/
+        inventory.Container.Items.Clear();
+        
+    }
 
     private void Update()
     {

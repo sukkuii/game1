@@ -11,14 +11,14 @@ using System.Runtime.Serialization;
 public class InventoryObject : ScriptableObject
 {
     public string savePath;
-    private ItemDataBaseObject database;
+    public ItemDataBaseObject database;
     public Inventory Container;
     
     public void AddItem(Item item, int amount)
     {
         for(int i = 0; i < Container.Items.Count; i++)
         {
-            if(Container.Items[i].item == item)
+            if(Container.Items[i].item.ID == item.ID)
             {
                 Container.Items[i].AddAmount(amount);
                 return;
@@ -48,6 +48,7 @@ public class InventoryObject : ScriptableObject
         IFormatter formatter = new BinaryFormatter();
         Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Create, FileAccess.Write);
         formatter.Serialize(stream, Container);
+        Debug.Log(string.Concat(Application.persistentDataPath, savePath));
         stream.Close();
     }
 
