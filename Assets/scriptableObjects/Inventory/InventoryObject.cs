@@ -14,7 +14,7 @@ public class InventoryObject : ScriptableObject
     public ItemDataBaseObject database;
     public Inventory Container;
     
-    public void AddItem(Item item, int amount)
+    public void AddItem(Item item, int amount)// сделать так чтобы предметы с однинаковым числовым значением бафафов стакались а с разным числовым значением баффов не стакались. проверить одинаковые баффы
     {
         for(int i = 0; i < Container.Items.Count; i++)
         {

@@ -38,7 +38,8 @@ public class DisplayInventory : MonoBehaviour
     }
     public Vector3 GetPosition(int i)
     {
-        return new Vector3(xStart + (xbetweenItems + 50) * (i % amountOfColumns),yStart - (ybetweenItems + 50) * (i / amountOfColumns), 0f);//Вместо 50 нужно написать ширину префаба
+        float prefabWidth = inventoryPrefab.GetComponent<RectTransform>().rect.width;// префаб квадратный
+        return new Vector3(xStart + (xbetweenItems + prefabWidth) * (i % amountOfColumns), yStart - (ybetweenItems + prefabWidth) * (i / amountOfColumns), 0f);
     }
 
     public void UpdateDisplay()

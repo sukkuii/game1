@@ -43,10 +43,17 @@ public class Item
     {
         Name = item.name;
         ID = item.ID;
-        buffs = new ItemBuff[item.buffs.Length];// для каждого элемента buffs нужно присвоит значение из item.buffs
+        buffs = new ItemBuff[item.buffs.Length];
+
+        for (int i = 0; i < item.buffs.Length; i++)
+        {
+            buffs[i] = new ItemBuff(item.buffs[i].min, item.buffs[i].max);// у нас есть конструктор с 3 параметрами
+            buffs[i].attribute = item.buffs[i].attribute;
+        }
     }
 }
 
+[System.Serializable]
 public class ItemBuff
 {
     public Attributes attribute;
@@ -58,6 +65,15 @@ public class ItemBuff
     {
         min = _min;
         max = _max;
+        GenerateValue();
+    }
+
+    public ItemBuff(int _min, int _max, Attributes _attribute)
+    {
+        attribute = _attribute;
+        min = _min;
+        max = _max;
+        GenerateValue();
     }
 
     public void GenerateValue()
