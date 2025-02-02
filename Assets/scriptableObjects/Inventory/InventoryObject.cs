@@ -16,7 +16,7 @@ public class InventoryObject : ScriptableObject
     
     public void AddItem(Item item, int amount)// сделать так чтобы предметы с однинаковым числовым значением бафафов стакались а с разным числовым значением баффов не стакались. проверить одинаковые баффы
     {
-        for(int i = 0; i < Container.Items.Count; i++)
+        /*for(int i = 0; i < Container.Items.Count; i++)
         {
             if(Container.Items[i].item.ID == item.ID)
             {
@@ -24,7 +24,7 @@ public class InventoryObject : ScriptableObject
                 return;
             }
         }
-        Container.Items.Add(new InventorySlot(item.ID, item, amount));
+        Container.Items.Add(new InventorySlot(item.ID, item, amount));*/
     }
 
     /*private void OnEnable()
@@ -97,7 +97,7 @@ public class InventoryObject : ScriptableObject
 [System.Serializable]
 public class Inventory
 {
-    public List<InventorySlot> Items = new List<InventorySlot>();
+    public InventorySlot[] Items = new InventorySlot[32];
 }
 [System.Serializable]
 public class InventorySlot
@@ -110,6 +110,13 @@ public class InventorySlot
         ID = _id;
         item = _item;
         amount = _amount;
+    }
+
+    public InventorySlot()
+    {
+        ID = -1;
+        item = null;
+        amount = 0;
     }
 
     public void AddAmount(int value)

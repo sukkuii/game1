@@ -15,5 +15,5 @@ MonoBehaviour:
   uiDisplay: {fileID: 0}
   itemType: 2
   description: Description
-  ID: 0
+  ID: 1
   buffs: []
