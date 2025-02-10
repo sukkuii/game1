@@ -53,6 +53,17 @@ public class DisplayInventory : MonoBehaviour
         }   
     }
 
+    public void UpdateSlots()
+    {
+        foreach(KeyValuePair<GameObject, InventorySlot> slot in itemsDisplayed)
+        {
+            if(slot.Value.ID > -1)
+            {
+                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = inventory.database.GetItem[slot.Value.item.ID].uiDisplay;
+            }
+        }
+    }
+
     /*public void UpdateDisplay()
     {
         for(int i = 0; i < inventory.Container.Items.Count; i++)

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f104a1f588d507e4aa171a69655bddbb, type: 3}
-  m_Name: trackj
+  m_Name: trash
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: 0}
   itemType: 2
