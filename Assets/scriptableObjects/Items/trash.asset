@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f104a1f588d507e4aa171a69655bddbb, type: 3}
   m_Name: trash
   m_EditorClassIdentifier: 
-  uiDisplay: {fileID: 0}
+  uiDisplay: {fileID: 1811187300, guid: 3acab673db3f8bc4196c6c122793e3f1, type: 3}
   itemType: 2
   description: Description
   ID: 1

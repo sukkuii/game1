@@ -1,11 +1,10 @@
-number = int(input("Введите число: "))
+# Запрашиваем у пользователя количество секунд
+seconds = int(input("Введите количество секунд: "))
 
-if 10 <= number <= 99:
-    tens = number // 10
-    units = number % 10
-
-    sum_of_digits = tens + units
-
-    print(f"{number} = {tens} + {units} = {sum_of_digits}")фвпрфф
+# Определяем текущий цвет светофора
+if 0 <= seconds % 60 < 30:
+    print("Красный")
+elif 30 <= seconds % 60 < 35:
+    print("Желтый")
 else:
-    print("Ошибка: введите двузначное число.")
+    print("Зеленый")

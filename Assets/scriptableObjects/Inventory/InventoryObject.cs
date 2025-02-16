@@ -24,14 +24,33 @@ public class InventoryObject : ScriptableObject
 
         for(int i = 0; i < Container.Items.Length; i++)
         {
+            Debug.Log(Container.Items[i].item.ID);
+            Debug.Log(item.ID);
             if(Container.Items[i].item.ID == item.ID)
             {
                 Container.Items[i].AddAmount(amount);
                 return;
             }
+        } 
+        for(int i = 0; i < Container.Items.Length; i++)
+        {
+            if(Container.Items[i].item.ID == item.ID)
+            {
+                if(item.buffs.Length == Container.Items[i].item.buffs.Length)
+                {
+                    for(int j = 0; j < item.buffs.Length; i++)
+                    {
+                        if(item.buffs[j] != Container.Items[i].item.buffs[j])
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
         }
-        var _item = SetItemInEmptySlot(item, amount);   
     }
+
+
 
     public InventorySlot SetItemInEmptySlot(Item _item, int _amount)
     {
@@ -121,7 +140,7 @@ public class Inventory
 [System.Serializable]
 public class InventorySlot
 {
-    public int ID;
+    public int ID = -1;
     public Item item;
     public int amount;
     public InventorySlot(int _id, Item _item, int _amount)

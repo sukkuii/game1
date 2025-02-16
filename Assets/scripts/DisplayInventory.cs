@@ -21,7 +21,7 @@ public class DisplayInventory : MonoBehaviour
 
     void Update()
     {
-        
+        UpdateSlots();
     }
 
     /*public void CreateDisplay()
@@ -60,7 +60,15 @@ public class DisplayInventory : MonoBehaviour
             if(slot.Value.ID > -1)
             {
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = inventory.database.GetItem[slot.Value.item.ID].uiDisplay;
+                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
+                slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = slot.Value.amount == 1 ? "" : slot.Value.amount.ToString("n0");
             }
+            else
+            {
+                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
+                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
+                slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = "";
+            }            
         }
     }
 
