@@ -7,7 +7,7 @@ using UnityEngine;
 public class ItemDataBaseObject : ScriptableObject, ISerializationCallbackReceiver
 {
     public ItemObject[] items;
-    public Dictionary<int, ItemObject> GetItem = new Dictionary<int, ItemObject>();
+    public Dictionary<int, ItemObject> GetItem = new Dictionary<int, ItemObject>();// стоит ли поправить ID в словаре??
     
     public void OnAfterDeserialize()
     {

@@ -14,56 +14,61 @@ public class InventoryObject : ScriptableObject
     public ItemDataBaseObject database;
     public Inventory Container;
     
-    public void AddItem(Item item, int amount)// сделать так чтобы предметы с однинаковым числовым значением бафафов стакались а с разным числовым значением баффов не стакались. проверить одинаковые баффы
+public void AddItem(Item item, int amount)
+{
+    bool found = false;
+    // Проверяем, есть ли предмет в инвентаре
+    for (int i = 0; i < Container.Items.Length; i++)
     {
-        if(item.buffs.Length > 0)
+        // Если предмет найден
+        if (Container.Items[i].ID == item.ID)
         {
-            var item1 = SetItemInEmptySlot(item, amount);   
-            return;
-        }
+            // Проверяем совпадение по количеству баффов
+            if (item.buffs.Length == Container.Items[i].item.buffs.Length)
+            {
+                bool buffsMatch = true;
 
-        for(int i = 0; i < Container.Items.Length; i++)
-        {
-            Debug.Log(Container.Items[i].item.ID);
-            Debug.Log(item.ID);
-            if(Container.Items[i].item.ID == item.ID)
-            {
-                Container.Items[i].AddAmount(amount);
-                return;
-            }
-        } 
-        for(int i = 0; i < Container.Items.Length; i++)
-        {
-            if(Container.Items[i].item.ID == item.ID)
-            {
-                if(item.buffs.Length == Container.Items[i].item.buffs.Length)
+                // Проверяем совпадение значений баффов
+                for (int j = 0; j < item.buffs.Length; j++)
                 {
-                    for(int j = 0; j < item.buffs.Length; i++)
+                    if (item.buffs[j] != Container.Items[i].item.buffs[j])
                     {
-                        if(item.buffs[j] != Container.Items[i].item.buffs[j])
-                        {
-                            break;
-                        }
+                        buffsMatch = false;
+                        break;
                     }
+                }
+
+                // Если баффы совпадают, увеличиваем количество
+                if (buffsMatch)
+                {
+                    Container.Items[i].AddAmount(amount);
+                    found = true;
+                    return;
                 }
             }
         }
+
     }
-
-
-
-    public InventorySlot SetItemInEmptySlot(Item _item, int _amount)
+    
+    if(!found)
     {
-        for(int i = 0; i < Container.Items.Length; i++)
-        {
-            if(Container.Items[i].ID <= -1)
-            {
-                Container.Items[i].UpdateSlot(_item.ID, _item, _amount);
-                return  Container.Items[i];
-            }
-        }
-        return null;// сюда нужно вернуться дописать если инвентарь полный
+        // Если предмета нет, пытаемся поместить его в пустой слот
+        SetItemInEmptySlot(item, amount);
     }
+}
+
+public InventorySlot SetItemInEmptySlot(Item _item, int _amount)
+{
+    for (int i = 0; i < Container.Items.Length; i++)
+    {
+        if (Container.Items[i].ID <= -1) // Пустой слот
+        {
+            Container.Items[i].UpdateSlot(_item.ID, _item, _amount);
+            return Container.Items[i];
+        }
+    }
+    return null;
+}
 
     /*private void OnEnable()
     {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class DisplayInventory : MonoBehaviour
 {
@@ -68,8 +70,13 @@ public class DisplayInventory : MonoBehaviour
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
                 slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
                 slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = "";
-            }            
+            }  
         }
+    }
+
+    private void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
+    {
+        
     }
 
     /*public void UpdateDisplay()
