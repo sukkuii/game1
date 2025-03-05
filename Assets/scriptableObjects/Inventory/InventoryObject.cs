@@ -14,61 +14,81 @@ public class InventoryObject : ScriptableObject
     public ItemDataBaseObject database;
     public Inventory Container;
     
-public void AddItem(Item item, int amount)
-{
-    bool found = false;
-    // Проверяем, есть ли предмет в инвентаре
-    for (int i = 0; i < Container.Items.Length; i++)
+    public void AddItem(Item item, int amount)
     {
-        // Если предмет найден
-        if (Container.Items[i].ID == item.ID)
+        bool found = false;
+        // Проверяем, есть ли предмет в инвентаре
+        for (int i = 0; i < Container.Items.Length; i++)
         {
-            // Проверяем совпадение по количеству баффов
-            if (item.buffs.Length == Container.Items[i].item.buffs.Length)
+            // Если предмет найден
+            if (Container.Items[i].ID == item.ID)
             {
-                bool buffsMatch = true;
-
-                // Проверяем совпадение значений баффов
-                for (int j = 0; j < item.buffs.Length; j++)
+                // Проверяем совпадение по количеству баффов
+                if (item.buffs.Length == Container.Items[i].item.buffs.Length)
                 {
-                    if (item.buffs[j] != Container.Items[i].item.buffs[j])
+                    bool buffsMatch = true;
+
+                    // Проверяем совпадение значений баффов
+                    for (int j = 0; j < item.buffs.Length; j++)
                     {
-                        buffsMatch = false;
-                        break;
+                        if (item.buffs[j] != Container.Items[i].item.buffs[j])
+                        {
+                            buffsMatch = false;
+                            break;
+                        }
+                    }
+
+                        // Если баффы совпадают, увеличиваем количество
+                    if (buffsMatch)
+                    {
+                        Container.Items[i].AddAmount(amount);
+                        found = true;
+                return;
+
                     }
                 }
-
-                // Если баффы совпадают, увеличиваем количество
-                if (buffsMatch)
-                {
-                    Container.Items[i].AddAmount(amount);
-                    found = true;
-                    return;
-                }
             }
-        }
 
+        }
+        
+        if(!found)
+        {
+            // Если предмета нет, пытаемся поместить его в пустой слот
+            SetItemInEmptySlot(item, amount);
+        }
     }
     
-    if(!found)
-    {
-        // Если предмета нет, пытаемся поместить его в пустой слот
-        SetItemInEmptySlot(item, amount);
-    }
-}
+    public InventorySlot SetItemInEmptySlot(Item _item, int _amount)
 
-public InventorySlot SetItemInEmptySlot(Item _item, int _amount)
-{
-    for (int i = 0; i < Container.Items.Length; i++)
     {
-        if (Container.Items[i].ID <= -1) // Пустой слот
+        for(int i = 0; i < Container.Items.Length; i++)
         {
-            Container.Items[i].UpdateSlot(_item.ID, _item, _amount);
-            return Container.Items[i];
+            if(Container.Items[i].ID <= -1) // Пустой слот
+            {
+                Container.Items[i].UpdateSlot(_item.ID, _item, _amount);
+                return Container.Items[i];
+            }
+        }
+        return null;
+    }
+
+    public void MoveItem(InventorySlot item1, InventorySlot item2)
+    {
+        InventorySlot temp = new InventorySlot(item2.ID, item2.item, item2.amount);
+        item2.UpdateSlot(item1.ID, item1.item, item1.amount);
+        item1.UpdateSlot(temp.ID, temp.item, temp.amount);
+    }
+
+    public void RemoveItem(Item _item)
+    {
+        for(int i = 0; i < Container.Items.Length; i++)
+        {
+            if(Container.Items[i].item == _item)
+            {
+                Container.Items[i].UpdateSlot(-1, null, 0);
+            }
         }
     }
-    return null;
-}
 
     /*private void OnEnable()
     {
@@ -102,7 +122,11 @@ public InventorySlot SetItemInEmptySlot(Item _item, int _amount)
         {
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Create, FileAccess.Write);
-            Container = (Inventory)formatter.Deserialize(stream);
+            Inventory newContainer = (Inventory)formatter.Deserialize(stream);
+            for(int i = 0; i < Container.Items.Length; i++)
+            {
+                Container.Items[i].UpdateSlot(newContainer.Items[i].ID, newContainer.Items[i].item, newContainer.Items[i].amount);
+            }
             stream.Close();
         }
     }
@@ -174,6 +198,3 @@ public class InventorySlot
         amount = _amount;
     }
 }
-
-
-
