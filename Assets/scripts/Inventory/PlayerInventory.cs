@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public InventoryObject inventory;
+    public MouseItem mouseItem = new MouseItem();
 
     public void OnTriggerEnter2D(Collider2D other)
     {

@@ -25,7 +25,7 @@ public class InventoryObject : ScriptableObject
             {
                 // Проверяем совпадение по количеству баффов
                 if (item.buffs.Length == Container.Items[i].item.buffs.Length)
-                {
+                {   
                     bool buffsMatch = true;
 
                     // Проверяем совпадение значений баффов
@@ -62,15 +62,15 @@ public class InventoryObject : ScriptableObject
 
     {
         for(int i = 0; i < Container.Items.Length; i++)
-        {
+        {   
             if(Container.Items[i].ID <= -1) // Пустой слот
             {
                 Container.Items[i].UpdateSlot(_item.ID, _item, _amount);
                 return Container.Items[i];
-            }
+            }                               
         }
         return null;
-    }
+    }                       
 
     public void MoveItem(InventorySlot item1, InventorySlot item2)
     {
