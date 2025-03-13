@@ -172,6 +172,7 @@ public class InventorySlot
     public int ID = -1;
     public Item item;
     public int amount;
+    public UserInterface parentInventory;
     public InventorySlot(int _id, Item _item, int _amount)
     {
         ID = _id;

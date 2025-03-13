@@ -13,6 +13,10 @@ public abstract class UserInterface : MonoBehaviour
     public Dictionary<GameObject, InventorySlot> itemsDisplayed = new Dictionary<GameObject, InventorySlot>();
     void Start()
     {
+        for(int i = 0; i < inventory.Container.Items.Length; i++)
+        {
+            inventory.Container.Items[i].parentInventory = this;
+        }
         CreateSlots();
     }
 
@@ -100,7 +104,7 @@ public abstract class UserInterface : MonoBehaviour
         
         if(player.mouseItem.hoverObj)
         {
-            inventory.MoveItem(itemsDisplayed[obj], itemsDisplayed[player.mouseItem.hoverObj]);
+            inventory.MoveItem(itemsDisplayed[obj], player.mouseItem.hoverItem.parentInventory.itemsDisplayed[player.mouseItem.hoverObj]);
         }
         else
         {
