@@ -173,11 +173,28 @@ public class InventorySlot
     public Item item;
     public int amount;
     public UserInterface parentInventory;
+    public ItemType[] allowedItems = new ItemType[0];
     public InventorySlot(int _id, Item _item, int _amount)
     {
         ID = _id;
         item = _item;
         amount = _amount;
+    }
+
+    public bool CanPlaceInSlot(ItemObject _item)
+    {
+        if(allowedItems.Length <= 0)
+        {
+            return true;
+        }
+        for(int i = 0, count = allowedItems.Length; i < count; i++)
+        {
+            if(_item.itemType == allowedItems[i])
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public InventorySlot()

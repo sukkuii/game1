@@ -101,17 +101,23 @@ public abstract class UserInterface : MonoBehaviour
 
     public void OnDragEnd(GameObject obj)// проверка чтобы пустой слот нельзя было положить
     {
-        
-        if(player.mouseItem.hoverObj)
+        var itemInMouse = player.mouseItem;
+        var mouseHoverItem = itemInMouse.hoverItem;
+        var mouseHoverObj = itemInMouse.hoverObj;
+        var getItemObject = inventory.database.GetItem;
+        if(mouseHoverObj)
         {
-            inventory.MoveItem(itemsDisplayed[obj], player.mouseItem.hoverItem.parentInventory.itemsDisplayed[player.mouseItem.hoverObj]);
+            if(mouseHoverItem.CanPlaceInSlot(getItemObject[itemsDisplayed[obj].ID]) && (mouseHoverItem.item.ID <= -1) 
+            || ((mouseHoverItem.item.ID >= 0) && (itemsDisplayed[obj].CanPlaceInSlot(getItemObject[mouseHoverItem.item.ID]))))
+
+                inventory.MoveItem(itemsDisplayed[obj], mouseHoverItem.parentInventory.itemsDisplayed[mouseHoverObj]);
         }
         else
         {
-            inventory.RemoveItem(itemsDisplayed[obj].item);
+            //inventory.RemoveItem(itemsDisplayed[obj].item);
         }
-        Destroy (player.mouseItem.obj);
-        player.mouseItem.slot = null;
+        Destroy (itemInMouse.obj);
+        itemInMouse.slot = null;
     }
 
     public void OnDrag(GameObject obj)

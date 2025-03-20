@@ -16,39 +16,59 @@ MonoBehaviour:
   database: {fileID: 11400000, guid: 55f53ec621aa5af44a7fb3b05d78c76a, type: 2}
   Container:
     Items:
+    - ID: 13
+      item:
+        Name: Amethyst ring
+        ID: 13
+        buffs: []
+      amount: 1
+      parentInventory: {fileID: 0}
+      allowedItems: 06000000
     - ID: -1
       item:
         Name: 
         ID: 0
         buffs: []
       amount: 0
+      parentInventory: {fileID: 0}
+      allowedItems: 05000000
+    - ID: 16
+      item:
+        Name: Elite greaves
+        ID: 16
+        buffs: []
+      amount: 1
+      parentInventory: {fileID: 0}
+      allowedItems: 03000000
+    - ID: 7
+      item:
+        Name: helmet2
+        ID: 7
+        buffs: []
+      amount: 1
+      parentInventory: {fileID: 0}
+      allowedItems: 01000000
     - ID: -1
       item:
         Name: 
         ID: 0
         buffs: []
       amount: 0
-    - ID: -1
+      parentInventory: {fileID: 0}
+      allowedItems: 04000000
+    - ID: 17
       item:
-        Name: 
-        ID: 0
+        Name: Elite bracers
+        ID: 17
         buffs: []
-      amount: 0
-    - ID: -1
+      amount: 1
+      parentInventory: {fileID: 0}
+      allowedItems: 07000000
+    - ID: 15
       item:
-        Name: 
-        ID: 0
+        Name: Elite Cuirass
+        ID: 15
         buffs: []
-      amount: 0
-    - ID: -1
-      item:
-        Name: 
-        ID: 0
-        buffs: []
-      amount: 0
-    - ID: -1
-      item:
-        Name: 
-        ID: 0
-        buffs: []
-      amount: 0
+      amount: 1
+      parentInventory: {fileID: 0}
+      allowedItems: 02000000

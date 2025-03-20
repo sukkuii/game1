@@ -10,6 +10,6 @@ public class EquipmentItem : ItemObject
     public int defenceBonus;
     public void Awake()
     {
-        itemType = ItemType.Equipment;
+        itemType = ItemType.Chestplate;
     }
 }
