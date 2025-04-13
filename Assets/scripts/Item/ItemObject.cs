@@ -22,39 +22,45 @@ public enum Attributes
     Intellect
 }
 
-public abstract class ItemObject : ScriptableObject //Abstract что это
+public abstract class ItemObject : ScriptableObject
 {
    public Sprite uiDisplay;
+   public bool stackable;
    public ItemType itemType;
    public string description;
-   public int ID;
-   public ItemBuff[] buffs;
+   public Item data = new Item();
 
    public Item CreateItem()
    {
         Item newItem = new Item(this);
         return newItem;
    } 
-   
 }
 
 [System.Serializable]
 public class Item
 {
     public string Name;
-    public int ID;
+    public int ID = -1;
     public ItemBuff[] buffs;
+    public ItemType itemType; // Added itemType property
+    public Item()
+    {
+        Name = "";
+        ID = -1;
+    }
 
     public Item(ItemObject item)
     {
         Name = item.name;
-        ID = item.ID;
-        buffs = new ItemBuff[item.buffs.Length];
+        ID = item.data.ID;
+        itemType = item.itemType; // Set itemType from ItemObject
+        buffs = new ItemBuff[item.data.buffs.Length];
 
-        for (int i = 0; i < item.buffs.Length; i++)
+        for (int i = 0; i < item.data.buffs.Length; i++)
         {
-            buffs[i] = new ItemBuff(item.buffs[i].min, item.buffs[i].max);// у нас есть конструктор с 3 параметрами
-            buffs[i].attribute = item.buffs[i].attribute;
+            buffs[i] = new ItemBuff(item.data.buffs[i].min, item.data.buffs[i].max);
+            buffs[i].attribute = item.data.buffs[i].attribute;
         }
     }
 }

@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: helmet
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: -285470411, guid: f5d12049ba0004c45b67e0083b36969d, type: 3}
+  stackable: 0
   itemType: 1
   description: "\u0417\u0430\u0449\u0438\u0449\u0430\u0435\u0442 \u043D\u0430 1 \u0445\u043F"
-  ID: 2
-  buffs: []
+  data:
+    Name: 
+    ID: 14
+    buffs: []
+    itemType: 0
   attackBonus: 0
   defenceBonus: 1

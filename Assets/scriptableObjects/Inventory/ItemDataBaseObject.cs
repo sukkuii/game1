@@ -13,7 +13,7 @@ public class ItemDataBaseObject : ScriptableObject, ISerializationCallbackReceiv
     {
         for(int i = 0; i < items.Length; i++)
         {
-            items[i].ID = i;
+            items[i].data.ID = i;
             GetItem.Add(i, items[i]);
             
         }

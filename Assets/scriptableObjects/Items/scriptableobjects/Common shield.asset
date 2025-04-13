@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Common shield
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: 1795418797, guid: 31b75b40091426942996b4d2f24d55f4, type: 3}
+  stackable: 0
   itemType: 5
   description: "\u043E\u0431\u044B\u0447\u043D\u044B\u0439 \u0449\u0438\u0442"
-  ID: 8
-  buffs: []
+  data:
+    Name: 
+    ID: 7
+    buffs: []
+    itemType: 0
   attackBonus: 0
   defenceBonus: 1

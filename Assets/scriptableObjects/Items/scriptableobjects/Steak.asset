@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Steak
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: 1587155713, guid: 2d32f96b28dc0d9479129a87f6fcc318, type: 3}
+  stackable: 0
   itemType: 0
   description: "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u0430\u0432\u043B\u0438\u0432\u0430\u0435\u0442
     3\u0445\u043F"
-  ID: 6
-  buffs: []
+  data:
+    Name: 
+    ID: 18
+    buffs: []
+    itemType: 0
   regenHealthValue: 3

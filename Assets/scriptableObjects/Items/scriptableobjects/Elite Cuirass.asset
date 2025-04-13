@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Elite Cuirass
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: 1377882175, guid: 107be2bf7048d9b45a8432c0cbf0fa19, type: 3}
-  itemType: 1
+  stackable: 0
+  itemType: 2
   description: "\u0417\u0430\u0449\u0438\u0449\u0430\u0435\u0442 \u043D\u0430 2"
-  ID: 15
-  buffs: []
+  data:
+    Name: 
+    ID: 11
+    buffs: []
+    itemType: 0
   attackBonus: 0
   defenceBonus: 2

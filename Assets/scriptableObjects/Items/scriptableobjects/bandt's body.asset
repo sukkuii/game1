@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: bandt's body
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: -272803843, guid: 107be2bf7048d9b45a8432c0cbf0fa19, type: 3}
+  stackable: 0
   itemType: 1
   description: "\u0417\u0430\u0449\u0438\u0449\u0430\u0435\u0442 \u043D\u0430 1"
-  ID: 18
-  buffs: []
+  data:
+    Name: 
+    ID: 3
+    buffs: []
+    itemType: 0
   attackBonus: 0
   defenceBonus: 1

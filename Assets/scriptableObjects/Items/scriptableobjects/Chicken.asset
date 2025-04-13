@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Chicken
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: -1148733186, guid: b0851162516b6244f9ab7679cdb66512, type: 3}
+  stackable: 0
   itemType: 0
   description: "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u0430\u0432\u043B\u0438\u0432\u0430\u0435\u0442
     2\u0445\u043F"
-  ID: 4
-  buffs: []
+  data:
+    Name: 
+    ID: 6
+    buffs: []
+    itemType: 0
   regenHealthValue: 2

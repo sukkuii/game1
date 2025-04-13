@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Knight's sword
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: 854508499, guid: d7ce22f21c10ae548aae9426610c3fe9, type: 3}
+  stackable: 0
   itemType: 4
   description: "\u041C\u0435\u0447 \u0440\u044B\u0446\u0430\u0440\u044F"
-  ID: 12
-  buffs: []
+  data:
+    Name: 
+    ID: 16
+    buffs: []
+    itemType: 0
   attackBonus: 3
   defenceBonus: 0

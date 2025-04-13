@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: trash
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: 1811187300, guid: 3acab673db3f8bc4196c6c122793e3f1, type: 3}
-  itemType: 2
+  stackable: 0
+  itemType: 8
   description: Description
-  ID: 1
-  buffs: []
+  data:
+    Name: 
+    ID: 19
+    buffs: []
+    itemType: 0

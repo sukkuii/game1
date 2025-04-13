@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Common sword
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: -337796069, guid: f97ec30c7f613fc49b8c89f1d8b1917d, type: 3}
+  stackable: 0
   itemType: 4
   description: "\u043E\u0431\u044B\u0447\u043D\u044B\u0439 \u043C\u0435\u0447"
-  ID: 9
-  buffs: []
+  data:
+    Name: 
+    ID: 8
+    buffs: []
+    itemType: 0
   attackBonus: 1
   defenceBonus: 0
