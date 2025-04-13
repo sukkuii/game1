@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bone
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: 644399199, guid: 4ae8370b2cee24e45a7a100f9780942c, type: 3}
-  stackable: 0
+  stackable: 1
   itemType: 8
   description: "\u041A\u043E\u0441\u0442\u044C"
   data:

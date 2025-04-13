@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Healing Potion
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: 989793573, guid: 4ae8370b2cee24e45a7a100f9780942c, type: 3}
-  stackable: 0
+  stackable: 1
   itemType: 0
   description: "\u0417\u0435\u043B\u044C\u0435 \u0438\u0441\u0446\u0435\u043B\u0435\u043D\u0438\u044F"
   data:
