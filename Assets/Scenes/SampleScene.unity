@@ -7609,7 +7609,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &380670534
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7680,7 +7680,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: 9c8855b6f5e2d134ca7aa3277d827f49, type: 2}
-  player: {fileID: 781893970}
   inventoryPrefab: {fileID: 934313352151827516, guid: 45338388808128e49b08825c4899c830, type: 3}
   xbetweenItems: 5
   ybetweenItems: 5
@@ -7802,6 +7801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: 9c8855b6f5e2d134ca7aa3277d827f49, type: 2}
+  equipment: {fileID: 0}
 --- !u!1001 &807566830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8637,7 +8637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1492909389
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8677,7 +8677,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: 47d70d5d29bc49447897cc67ce545afb, type: 2}
-  player: {fileID: 781893970}
   slots:
   - {fileID: 1954855915}
   - {fileID: 1870735612}
@@ -12270,11 +12269,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3257740194052816656, guid: 55c53731fab0192479fef8948d3d1a94, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 82.77
+      value: 117.46
       objectReference: {fileID: 0}
     - target: {fileID: 3257740194052816656, guid: 55c53731fab0192479fef8948d3d1a94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.32
+      value: -3.14
       objectReference: {fileID: 0}
     - target: {fileID: 3257740194052816656, guid: 55c53731fab0192479fef8948d3d1a94, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12307,6 +12306,10 @@ PrefabInstance:
     - target: {fileID: 3257740194052816656, guid: 55c53731fab0192479fef8948d3d1a94, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765450902639956649, guid: 55c53731fab0192479fef8948d3d1a94, type: 3}
+      propertyPath: moveSpeed
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5765450902639956649, guid: 55c53731fab0192479fef8948d3d1a94, type: 3}
       propertyPath: jumpHeight

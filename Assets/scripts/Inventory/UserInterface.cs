@@ -40,28 +40,9 @@ public abstract class UserInterface : MonoBehaviour
         trigger.triggers.Add(eventTrigger);
     }
 
-    public void UpdateSlots()
-    {
-        foreach(KeyValuePair<GameObject, InventorySlot> slot in slotsOnInterface)
-        {
-            if(slot.Value.item.ID > -1)
-            {
-                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = slot.Value.itemObject.uiDisplay;
-                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
-                slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = slot.Value.amount == 1 ? "" : slot.Value.amount.ToString("n0");
-            }
-            else
-            {
-                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
-                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
-                slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = "";
-            }  
-        }
-    }
-
     void Update()
     {
-        UpdateSlots();
+        slotsOnInterface.UpdateSlotDisplay();
     }
 
     /*public void CreateDisplay()
@@ -163,4 +144,26 @@ public static class MouseData
     public static GameObject tempItemBeingDragged;
     public static GameObject slotHoveredOver;
     public static UserInterface interfaceMouseIsOver;
+}
+
+public static class ExtentionMethods
+{
+    public static void UpdateSlotDisplay(this Dictionary<GameObject, InventorySlot> _slotsOnInterface)
+    {
+        foreach(KeyValuePair<GameObject, InventorySlot> slot in _slotsOnInterface)
+        {
+            if(slot.Value.item.ID > -1)
+            {
+                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = slot.Value.itemObject.uiDisplay;
+                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
+                slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = slot.Value.amount == 1 ? "" : slot.Value.amount.ToString("n0");
+            }
+            else
+            {
+                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
+                slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
+                slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = "";
+            }  
+        }
+    }
 }

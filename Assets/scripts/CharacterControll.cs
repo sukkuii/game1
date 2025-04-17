@@ -133,10 +133,9 @@ public class CharacterControll : MonoBehaviour
 
     private IEnumerator AttackCo()
     {
+        _rigidbody2D.velocity = Vector2.zero;
         currentState = PlayerState.attack;
-        anim.SetBool("isAttacking", true);
-        yield return new WaitForSeconds(0);
-        anim.SetBool("isAttacking", false);
+        anim.SetTrigger("isAttacking 0");
         yield return new WaitForSeconds(1);
         currentState = PlayerState.walk;
     }
