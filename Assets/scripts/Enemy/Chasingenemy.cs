@@ -28,6 +28,14 @@ public class Chasingenemy : Enemy
         CheckDistance();
     }
 
+    private IEnumerator Attack()
+    {
+        ChangeState(EnemyState.attack);
+        anim.SetTrigger("Attack");
+        yield return new WaitForSeconds(1.15f);
+        ChangeState(EnemyState.idle);       
+    }
+
     public virtual void CheckDistance()
     {
         if(Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius)
@@ -35,7 +43,7 @@ public class Chasingenemy : Enemy
             if(currentState == EnemyState.idle || EnemyState.walk == currentState && currentState != EnemyState.stagger)
             {
                 Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed*Time.deltaTime);
-                ChangeAnim(target.position.x);
+                ChangeAnim(target);
                 myRigidbody.MovePosition(temp);
                 ChangeState(EnemyState.walk);
                 anim.SetBool("Wakeup", true);
@@ -44,6 +52,13 @@ public class Chasingenemy : Enemy
         else if(Vector3.Distance(target.position, transform.position) > chaseRadius)
         {
             anim.SetBool("Wakeup", false);
+        }
+        else if(Vector3.Distance(target.position, transform.position) <= attackRadius)
+        {
+            if(currentState != EnemyState.stagger && isAttackingEnemy && currentState != EnemyState.attack)
+            {
+                StartCoroutine(Attack());
+            }
         }
     }
 

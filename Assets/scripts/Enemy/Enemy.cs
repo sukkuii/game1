@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public enum EnemyState
@@ -22,7 +23,9 @@ public class Enemy : MonoBehaviour
     public int baseAttack;
     public float moveSpeed;
     public Vector2 homePosition;
-
+    private bool facingRight;
+    [SerializeField] protected bool isAttackingEnemy = false;
+    
     [Header("Death Effects")]
     public GameObject deathEffect;
     private float deathEffectDelay = 1f;
@@ -38,15 +41,20 @@ public class Enemy : MonoBehaviour
         TakeDamage(damage);
     }
 
-    public void ChangeAnim(float moveX)
+    public void ChangeAnim(Transform target)
     {
-        if(transform.position.x > moveX)
+        Vector3 targetPosition = target.position; 
+        Vector3 diff = targetPosition - transform.position;
+        diff.Normalize();
+        if(diff.x > 0)
         {
-            this.GetComponent<SpriteRenderer>().flipX = false;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            facingRight = false;
         }
-        else
+        else if(!facingRight)
         {
-            this.GetComponent<SpriteRenderer>().flipX = true;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            facingRight = true;
         }
     }
 

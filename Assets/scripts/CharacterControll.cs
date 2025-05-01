@@ -22,7 +22,7 @@ public class CharacterControll : MonoBehaviour
     [SerializeField] private float jumpHeight;
     [SerializeField] private float moveSpeed = 10f;
     public PlayerState currentState;
-    private bool facingRight;
+    private bool facingRight = true;
 
     [Header("Health")]
     public FloatValue currentHealth;
@@ -54,7 +54,7 @@ public class CharacterControll : MonoBehaviour
 
     public void Knock(float knockTime, float damage, Vector3 positionOfEnemy)
     {
-        if(!(isBlocking && (facingRight && positionOfEnemy.x > this.gameObject.transform.position.x || !facingRight && positionOfEnemy.x < this.gameObject.transform.position.x)))
+        if(!(isBlocking && (facingRight && positionOfEnemy.x > transform.position.x || !facingRight && positionOfEnemy.x < transform.position.x)))
         {
             currentHealth.runtimeValue -= damage;
             playerHealthSignal.Raise();
@@ -64,7 +64,7 @@ public class CharacterControll : MonoBehaviour
             }
             else
             {
-                this.gameObject.SetActive(false);
+                gameObject.SetActive(false);
             }
         }
     }
@@ -73,6 +73,7 @@ public class CharacterControll : MonoBehaviour
     {
         if(_rigidbody2D != null)
         {
+            currentState = PlayerState.stagger;
             StartCoroutine(FlashCo());
             yield return new WaitForSeconds(knockTime);
             _rigidbody2D.velocity = Vector2.zero;

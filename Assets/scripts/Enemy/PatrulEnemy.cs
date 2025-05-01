@@ -16,7 +16,7 @@ public class PatrulEnemy : Chasingenemy
             if(currentState == EnemyState.idle || EnemyState.walk == currentState && currentState != EnemyState.stagger)
             {
                 Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed*Time.deltaTime);
-                ChangeAnim(target.position.x);
+                ChangeAnim(target);
                 myRigidbody.MovePosition(temp);
                 ChangeState(EnemyState.walk);
                 anim.SetBool("Wakeup", true);
@@ -27,7 +27,7 @@ public class PatrulEnemy : Chasingenemy
             if(Vector3.Distance(transform.position, currentGoal.position) > roundDistance)
             {
                 Vector3 temp = Vector3.MoveTowards(transform.position, currentGoal.position, moveSpeed * Time.deltaTime);
-                ChangeAnim(currentGoal.position.x);
+                ChangeAnim(currentGoal);
                 myRigidbody.MovePosition(temp);
             }
             else
